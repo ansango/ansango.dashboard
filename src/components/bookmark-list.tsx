@@ -3,9 +3,43 @@
 import { useEffect, useState, useCallback, useMemo, FC } from "react";
 
 import { Raindrop, RaindropsResponse, getRaindrops } from "@/lib/raindrop";
-import { BookmarkItem } from "./bookmark-item";
+
 import { Button } from "./ui/button";
-import { PlusCircle } from "./icons";
+import { ClipLink, PlusCircle } from "./icons";
+import { Body, Container, Cover, Description, Grid, Title } from "./list-item";
+import { ExternalLink } from "./external-link";
+
+import { Badge } from "@/components/ui/badge";
+
+export const BookmarkItem: FC<{ bookmark: Raindrop }> = ({
+  bookmark: { title, cover, domain, excerpt, tags, link },
+}) => {
+  return (
+    <ExternalLink href={link}>
+      <Container>
+        <Grid>
+          <Cover src={cover} alt={title} />
+          <Body>
+            <Title>{title}</Title>
+
+            <Description className="text-neutral-500">
+              <ClipLink className="inline-flex" /> <span>{domain}</span>
+            </Description>
+
+            <Description className="mt-1">{excerpt}</Description>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {tags.map((tag) => (
+                <Badge key={tag} variant={"outline"}>
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </Body>
+        </Grid>
+      </Container>
+    </ExternalLink>
+  );
+};
 
 export const BookmarkList: FC<{
   initialData: RaindropsResponse;
@@ -92,7 +126,6 @@ export const BookmarkList: FC<{
                 size={"icon"}
                 onClick={handleLoadMore}
                 disabled={isLoading}
-                
               >
                 <PlusCircle className="w-5 h-5" />
               </Button>

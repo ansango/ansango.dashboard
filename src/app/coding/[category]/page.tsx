@@ -1,7 +1,6 @@
-import { BookmarkItem } from "@/components/bookmark-item";
-import { BookmarkList } from "@/components/bookmark-list";
-import { ListItem } from "@/components/generic-list-item";
+import { ExternalLink } from "@/components/external-link";
 import { Header } from "@/components/header";
+import { Body, Container, Cover, Grid } from "@/components/list-item";
 import { ScrollArea } from "@/components/scroll-area";
 import { Title } from "@/components/title";
 import { getPostsGroupedByCategory } from "@/lib/coding";
@@ -47,19 +46,14 @@ export default async function CollectionPage({
           <Title title={category} className="p-4" />
           {posts.map((post, i) => {
             return (
-              <a
-                key={`post_${post.slug}-${i}`}
-                href={post.slug}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ListItem
-                  key={`post_${post.slug}-${i}`}
-                  title={post.title || ""}
-                  cover={post.cover}
-                  description={post.description}
-                />
-              </a>
+              <ExternalLink key={`post_${post.slug}-${i}`} href={post.slug}>
+                <Container>
+                  <Grid>
+                    <Cover src={post.cover} alt={post.title || ""} />
+                    <Body title={post.title} description={post.description} />
+                  </Grid>
+                </Container>
+              </ExternalLink>
             );
           })}
         </div>

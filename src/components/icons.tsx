@@ -62,6 +62,15 @@ export const PlusCircle = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const ClipLink = (props: SVGProps<SVGSVGElement>) => (
+  <svg {...defaultProps} {...props}>
+    <path
+      {...pathDefaultProps}
+      d="m15.988 13l3.902-3.902c1.437-1.437 1.485-3.718.107-5.095c-1.377-1.378-3.658-1.33-5.095.107L11 8.012m2 7.95l-3.892 3.88c-1.432 1.43-3.64 1.615-5.082.107c-1.442-1.507-1.326-3.639.107-5.068L8.025 11M9 15l6-6"
+    ></path>
+  </svg>
+);
+
 export const Menu = (props: SVGProps<SVGSVGElement>) => (
   <svg {...defaultProps} {...props}>
     <path {...pathDefaultProps} d="M4.5 6.5h15M4.5 12h15m-15 5.5h15"></path>
